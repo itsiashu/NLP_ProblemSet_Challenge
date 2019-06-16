@@ -1,0 +1,51 @@
+A. You are given a train data set having 1000 columns and 1 million rows. The data set is based on a classification problem. 
+Your manager has asked you to reduce the dimension of this data so that model computation time can be reduced. 
+Your machine has memory constraints. What would you do? (You are free to make practical assumptions.)
+
+Answer:
+High degree order(dimensions) of data processing is costly in terms of computation and more so on a machine with memory constraints. 
+However, it's highly probable and often encountered in day to day tasks.
+
+Here are few things we could do:
+1. Randomly sample the data set. 
+    Start with a smaller data set, let’s say, with few hundred thounds of row like 200K-400K to do the computations
+2. Cut down the dimensionality
+    Fileter out the noisy ones, multicollinearity and redundant ones
+    separate out the numerical and categorical variables 
+3. Intuitively, some understanding of dataset and business requirements will be helpful to guess which features are more important 
+4. To understand the maximum variance in the data set, PCA could be used and only selected components could be picked from data set
+5. You can also start with building a linear model and using Stochastic Gradient Descent or ADAM as optimizer could be helpful
+6. On hardware supportability point of view - running only classification application at hand with low memory OS will be help. 
+      Kill all other applications and execute only the current application processing the dataset.
+      
+      
+      
+B. You are given a data set on cancer detection. You’ve build a classification model and achieved an accuracy of 96%. 
+Why shouldn’t you be happy with your model performance? What can you do about it?    
+
+Answer: 
+This is case of skewed data or imbalanced data. Cancer detection can result in imbalanced data. Accuracy could be misleading and 
+should not be used to predict right results because even case of 1 person misdiagnosed or not detected as cancer patient can make 
+health care practice look like spurious and not reliable.
+
+In this case, the interest dataset is the minority 4% dataset. We can comeup with the evaluation matrix of Truths vs False.
+We can try few things in case the performance of the minority class 4% is not good:
+1. To make the data balanced we can do undersampling, oversampling 
+2. We can use AUC-ROC curve to get the optimal threshold
+3. We can provide minority 4% data as higher weight
+4. The other thing could be like anomaly detection
+
+
+C. You came to know that your model is suffering from low bias and high variance. Which algorithm should you use to tackle it? Why? 
+
+When model starts to learn all the training data and gets over complex, it will have high variance and such model is called as Overfit.
+While it does a good job on training data it fails to do much good on test data.
+
+For such models we can try alogirthms like random forest to tackle high vairance issue. Such algorithms are good for dividing  
+a data set into subsets with repeated randomized sampling. Such algorithms can be use to generate different set of models. 
+Using classifier and regression methods we can pick the better model for our dataset.
+
+To mitigate the problem of high variance we can also use regularization technique and penalize higher model coefficients. For example 
+Lasso and Ridge regression method can be used to achieve this and we can reduce the model complxity in this way.
+Also, figuring out some of the important features will be helpful and can be used predict better model and hence better outcome. 
+
